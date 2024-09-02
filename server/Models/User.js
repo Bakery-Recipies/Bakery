@@ -4,14 +4,13 @@ const { Schema, model, default: mongoose } = require("mongoose");
 const userSchema = new Schema({
   name: String,
   gender: String,
-  userType:String,
   isActive: { type: Boolean, default: false },
   email: String,
   password: String,
   favoraiteRecipie:[{type:mongoose.Types.ObjectId,ref:"Recipie"}],
   notifications:[{type:mongoose.Types.ObjectId,ref:"Notification"}],
   undreadNotification:{type:Boolean,default:false},
-  chats:[{type:mongoose.Types.ObjectId,ref:"Chat"}]
+  recentlyViewed:[{type:mongoose.Types.ObjectId,ref:"Recipie"}]
 });
 
 //defining user model
