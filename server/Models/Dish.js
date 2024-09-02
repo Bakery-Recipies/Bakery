@@ -1,11 +1,13 @@
 const { Schema, model, default: mongoose } = require("mongoose");
 
 const dishSchema = new Schema({
-  dishName: String,
+  recipie:{type:mongoose.Types.ObjectId,ref:"Recipie"},
+  
   dishDescription: String,
-  dishRatings: [{ type: mongoose.Types.ObjectId, ref: "Rating" }],
   dishPictures: [{ URL: String }],
   price: Number,
+  dishRating: [{ ratingNumber: Number }],
+  dishRatingAvg: Number,
   category: String,
 });
 
