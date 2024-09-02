@@ -6,7 +6,8 @@ const stepsSchema = new Schema({
 });
 
 const recipeSchema = new Schema({
-  recipieDish: { type: mongoose.Types.ObjectId, ref: "Dish" },
+  dishName: String,
+  recipieRatings: [{ type: mongoose.Types.ObjectId, ref: "Rating" }],
   ingrediants: [{ name: String }],
   recipieOverview: String,
   steps: [stepsSchema],
