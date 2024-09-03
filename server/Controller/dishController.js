@@ -1,3 +1,5 @@
+
+
 const Dish = require("../Models/Dish");
 
 exports.deleteDish = async (req, res) => {
@@ -10,3 +12,4 @@ exports.deleteDish = async (req, res) => {
     res.status(501).json({ message: "Internal server error", error: e });
   }
 };
+
