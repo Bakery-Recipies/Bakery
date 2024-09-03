@@ -4,8 +4,8 @@ import PayPalButton from './pyamentbutton';
 
 const CheckoutComponent = () => {
   return (
-    <div className="bg-pink-100 p-4">
-      <div className="mx-auto bg-white rounded-lg shadow-lg p-6">
+    <div className="bg-[#c98d83] p-4">
+      <div className="mx-auto bg-white rounded-lg shadow-xl p-6">
         <div className="text-center mb-4">
           <h1 className="text-2xl font-bold">Frozen-Cookie</h1>
           <div className="text-sm">
@@ -17,7 +17,7 @@ const CheckoutComponent = () => {
           <div className="flex-grow">
             <div className="mb-6">
               <h2 className="text-lg font-semibold mb-2 ">Express Checkout</h2>
-              <div className="flex gap-2 ">
+              <div className="flex gap-3 ">
                 <button className="bg-indigo-600 text-white px-4 py-2 rounded hover:scale-110">Shop Pay</button>
                 <button className="bg-white border border-gray-300 px-4 py-2 rounded hover:scale-110">
                   <img src="https://lh3.googleusercontent.com/CBDhGDth7rqSnLcRPjOdfw_HwgKS8Gu-KMIJKQQIXym3J32lqSrrBFTFRjIbKcFR7LNli8O-ChWEzL_Jz94G64jayZIgv5C2Bq3G" alt="Google Pay" className="h-9" />
@@ -25,12 +25,12 @@ const CheckoutComponent = () => {
                 <button className="bg-yellow-300 px-1 py-1 rounded hover:scale-110">
                   <img src="https://pbs.twimg.com/profile_images/1214220012979920898/N4tFtfjN_400x400.png" alt="Amazon Pay" className="h-8" />
                 </button>
-      
+      <button className='px-1 py-1 ' >
+
       <PayPalButton amount="10" />
+      </button>
                
-                <button className="bg-blue-500 text-white px-2 py-2 rounded hover:scale-110">
-                    <img src="https://tap2pay.me/wp-content/uploads/2018/12/PayPal-Header-720x480-1.jpg" alt="paypal" className='h-6' />
-                </button>
+                
               </div>
                
             </div>
