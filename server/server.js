@@ -4,9 +4,15 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
+
 const mongoose=require("./config/dbConfig")
-const userRoutes = require("./routes/userRoutes"); // Ensure correct path
-const dishRoutes = require("./routes/dishRoutes"); // Add this line
+const userRoutes = require("./routes/userRoutes"); 
+
+
+const mongoose = require("./config/dbConfig");
+const chefRoutes = require("./routes/chefRoutes");
+
+
 //server variables
 const port = process.env.PORT || 3000;
 const app = express();
@@ -19,8 +25,15 @@ app.use(cors(corsConfig));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.use("/api", userRoutes); // Use routes
-app.use("/api/dishes", dishRoutes); // Add this line
+
+
+
+//API Routes:
+//Users Routes
+app.use("/api/users", userRoutes); 
+app.use("/api/chefs", chefRoutes);
+//Other Routes
+app.use("/api/dishes", dishRoutes); 
 
 //server connection
 app.listen(port, () => {
