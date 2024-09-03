@@ -1,6 +1,9 @@
+
+
 const { Schema, model, default: mongoose } = require("mongoose");
 
 const dishSchema = new Schema({
+
   recipieID: { type: mongoose.Types.ObjectId, ref: "Recipie" },
   dishDescription: String,
   dishPictures: [{ URL: String }],
@@ -8,7 +11,9 @@ const dishSchema = new Schema({
   dishRating: [{ ratingNumber: Number }],
   dishRatingAvg: Number,
   category: String,
+
   isDeleted: { type: Boolean, default: false },
+
 });
 
 const Dish = model("Dish", dishSchema);
