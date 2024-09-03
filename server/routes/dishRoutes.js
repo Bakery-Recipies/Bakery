@@ -4,9 +4,7 @@ const express = require('express');
 const router = express.Router();
 const dishController = require('../Controller/dishController');
 
-router.get('/', dishController.getAllDishes);
-router.post('/', dishController.createDish);
-router.get('/:id', dishController.getDish);
-router.put('/:id', dishController.updateDish);
+// Route to get all dishes
+router.get('/getDishes', dishController.getAllDishes);
 
 module.exports = router;
