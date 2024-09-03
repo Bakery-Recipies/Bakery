@@ -1,13 +1,13 @@
 //imports
 const express = require("express");
 const cors = require("cors");
-// const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 
-const recipieRoutesAya = require("./routes/recipieRoutesAya");
-const dishRoutesAya = require("./routes/dishRoutesAya");
+// const recipieRoutesAya = require("./routes/recipieRoutesAya");
+const dishRoutes = require("./routes/dishRoutes");
 
 
 
@@ -35,21 +35,16 @@ const corsConfig = {
   credentials: true,
 };
 //server middlewares
-app.use(cors());
-app.use(express.json());
+app.use(cors(corsConfig));
+app.use(bodyParser.json());
 app.use(cookieParser());
-
-
-
-
-
 
 //API Routes:
 //Users Routes
 app.use("/api/users", userRoutes); 
 app.use("/api/chefs", chefRoutes);
 //Other Routes
-app.use("/api/dishes", dishRoutes); 
+app.use("/api/dishes", dishRoutes);
 
 
 
