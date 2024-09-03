@@ -1,19 +1,20 @@
 import React from 'react';
 import { CreditCard, Plus } from 'lucide-react';
 import PayPalButton from './pyamentbutton';
+import PaymentDetails from './paymentdetails';
 
 const CheckoutComponent = () => {
   return (
-    <div className="bg-[#c98d83] p-4">
-      <div className="mx-auto bg-white rounded-lg shadow-xl p-6">
-        <div className="text-center mb-4">
+    <div className="bg-[#c98d83] p-4 ">
+      <div className="mx-auto bg-white rounded-lg shadow-xl p-6 ">
+        <div className="text-center mb-4 ">
           <h1 className="text-2xl font-bold">Frozen-Cookie</h1>
           <div className="text-sm">
             <span className="text-gray-400">Your Cart</span> &gt; <span className="font-semibold">Check Out</span>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-8">
+        <div className="flex flex-col md:flex-row gap-8 ">
           <div className="flex-grow">
             <div className="mb-6">
               <h2 className="text-lg font-semibold mb-2 ">Express Checkout</h2>
@@ -64,39 +65,7 @@ const CheckoutComponent = () => {
               <input type="text" placeholder="Phone" className="w-full border border-gray-300 rounded px-3 py-2 mb-4" />
             </div>
 
-            <div className="mb-6">
-              <h2 className="text-lg font-semibold mb-4">Payment Details</h2>
-              <div className="flex gap-4 mb-4 accent-pink-400">
-                <label className="flex items-center">
-                  <input type="radio" name="payment" className="mr-3  " />
-                  <span>Net Banking</span>
-                </label>
-                <label className="flex items-center">
-                  <input type="radio" name="payment" className="mr-3  " checked />
-                  <span>Credit/Debit card</span>
-                </label>
-                <label className="flex items-center">
-                  <input type="radio" name="payment" className="mr-3 " />
-                  <span>Cash on delivery</span>
-                </label>
-              </div>
-              <div className="flex gap-4 shadow-black">
-                <div className="bg-pink-100 p-4 rounded flex-grow shadow-xl w-20">
-                  <img src="https://assets.weforum.org/organization/image/3aFMaJ3kyTD0580Nggta402aOQDX-KxPmM_GWtl2YNU.jpeg" alt="Visa" className="mb-2 h-8" />
-                  <div className="text-sm">**** **** **** 0981</div>
-                  <div className="text-xs text-gray-500">Expires 10/19</div>
-                </div>
-                <div className="bg-pink-100 p-4 rounded flex-grow shadow-xl w-20">
-                  <img src="https://cdn.punchng.com/wp-content/uploads/2016/09/09143426/mastercard-e1473428077657.gif" alt="Mastercard" className="mb-2 h-8" />
-                  <div className="text-sm">**** **** **** 2564</div>
-                  <div className="text-xs text-gray-500">Expires 10/19</div>
-                </div>
-                <div className="bg-pink-100 p-4 rounded flex-grow flex items-center justify-center shadow-xl w-20 h-36">
-                  <Plus size={24} />
-                  <span className="ml-2">Add New Card</span>
-                </div>
-              </div>
-            </div>
+           <PaymentDetails/>
 
             <button className="ml-4 bg-yellow-400 text-black font-semibold py-3 px-6 rounded-full w-52 border-black outline hover:bg-amber-300 hover:scale-95">
               Pay Now
