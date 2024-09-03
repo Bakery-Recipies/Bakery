@@ -1,5 +1,6 @@
 import React from 'react';
 import { CreditCard, Plus } from 'lucide-react';
+import PayPalButton from './pyamentbutton';
 
 const CheckoutComponent = () => {
   return (
@@ -24,10 +25,14 @@ const CheckoutComponent = () => {
                 <button className="bg-yellow-300 px-1 py-1 rounded hover:scale-110">
                   <img src="https://pbs.twimg.com/profile_images/1214220012979920898/N4tFtfjN_400x400.png" alt="Amazon Pay" className="h-8" />
                 </button>
+      
+      <PayPalButton amount="10" />
+               
                 <button className="bg-blue-500 text-white px-2 py-2 rounded hover:scale-110">
                     <img src="https://tap2pay.me/wp-content/uploads/2018/12/PayPal-Header-720x480-1.jpg" alt="paypal" className='h-6' />
                 </button>
               </div>
+               
             </div>
 
             <div className="border-t border-gray-200 pt-6">

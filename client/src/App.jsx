@@ -17,7 +17,7 @@ import Contactus_chef from "./pages/chef-pages/chef-contact";
 function App() {
   return (
     <>
-      <Header_chef></Header_chef>
+      <Header_chef/>
       <Routes>
      <Route path="/DishCard" element={<DishCard/>} />
         <Route path="/chef-home" element={<Chef_home_page></Chef_home_page>} />
@@ -26,8 +26,9 @@ function App() {
         <Route path="/chef-catalog" element={<Catalog_chef></Catalog_chef>} />
         <Route path="/chef-profile" element={<Chef_profile></Chef_profile>} />
         <Route path="/chef-contact" element={<Contactus_chef></Contactus_chef>} />
+        <Route path="/checkout" element={<CheckoutComponent/>}/>
       </Routes>
-      <Footer_chef></Footer_chef>
+      <Footer_chef/>
     </>
   );
 }
