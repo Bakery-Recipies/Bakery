@@ -1,4 +1,8 @@
 import React from "react";
+
+import CheckoutComponent from "./components/checkout";
+
+
 import { Routes, Route } from "react-router-dom";
 import "./pages/chef-pages/animations.css"
 
@@ -11,9 +15,11 @@ import Catalog_chef from "./pages/chef-pages/catalog";
 import Chef_profile from "./pages/chef-pages/profile";
 import Contactus_chef from "./pages/chef-pages/chef-contact";
 
+
 function App() {
   return (
     <>
+
       <Header_chef></Header_chef>
       <Routes>
         <Route path="/chef-home" element={<Chef_home_page></Chef_home_page>} />
@@ -29,6 +35,7 @@ function App() {
       
       
       
+
 
     </>
   );

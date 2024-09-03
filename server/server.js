@@ -13,6 +13,17 @@ const mongoose = require("./config/dbConfig");
 const chefRoutes = require("./routes/chefRoutes");
 
 
+// Paypal integration 
+const paypal = require("paypal-rest-sdk");
+
+paypal.configure({
+  'mode': 'sandbox', //sandbox or live
+  'client_id': 'NFZ8HHT9XSZDN',
+  'client_secret': ';>R-8-r:'
+});
+
+
+
 //server variables
 const port = process.env.PORT || 3000;
 const app = express();
