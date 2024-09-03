@@ -2,7 +2,8 @@ const { Schema, model, default: mongoose } = require("mongoose");
 
 const stepsSchema = new Schema({
   stepDiscription: String,
-  stepPicture: String,
+  stepMedia: String,
+  note: String,
 });
 
 const recipeSchema = new Schema({
@@ -15,6 +16,8 @@ const recipeSchema = new Schema({
   difficultyAvg: Number,
   duration: String,
   overviewPicture: String,
+  recipieAuthor: { type: mongoose.Types.ObjectId, ref: "Chef" },
+  isDeleted: { type: Boolean, default: false },
 });
 
 const Recipie = model("Recipie", recipeSchema);
