@@ -5,6 +5,6 @@ const router = express.Router();
 const dishController = require('../Controller/dishController');
 
 // Route to get all dishes
-router.get('/getDishes', dishController.getAllDishes);
+router.get("/getDishes", dishController.getAllDishes);
 
 module.exports = router;

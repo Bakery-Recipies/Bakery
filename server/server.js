@@ -2,7 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const paypal = require("paypal-rest-sdk");
-// const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
@@ -29,14 +29,9 @@ const corsConfig = {
   credentials: true,
 };
 //server middlewares
-app.use(cors());
-app.use(express.json());
+app.use(cors(corsConfig));
+app.use(bodyParser.json());
 app.use(cookieParser());
-
-
-
-
-
 
 //API Routes:
 //Users Routes

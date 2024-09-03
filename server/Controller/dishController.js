@@ -1,6 +1,6 @@
 
 
-const Dish = require("../Models/Dish");
+const Dish = require("../models/Dish");
 
 exports.deleteDish = async (req, res) => {
   const chefID = req.user;
@@ -15,14 +15,15 @@ exports.deleteDish = async (req, res) => {
 
 // Get all dishes
 exports.getAllDishes = async (req, res) => {
-    try {
-      const dishes = await Dish.find({ isdeleted: false }).populate('recipie', 'dishName');
-      res.status(200).json(dishes);
-    } catch (error) {
-      res.status(500).json({ message: error.message });
-    }
-  };
-  
+  try {
+    const dishes = await Dish.find().populate("recipieID").exec();
+    res.json(dishes);
+  } catch (err) {
+    console.error("Error in getAllDishes:", err);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
   // Get a dish by ID
   exports.getDishById = async (req, res) => {
     try {
