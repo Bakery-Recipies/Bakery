@@ -13,3 +13,25 @@ exports.deleteDish = async (req, res) => {
   }
 };
 
+// Get all dishes
+exports.getAllDishes = async (req, res) => {
+    try {
+      const dishes = await Dish.find({ isdeleted: false }).populate('recipie', 'dishName');
+      res.status(200).json(dishes);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
+  
+  // Get a dish by ID
+  exports.getDishById = async (req, res) => {
+    try {
+      const dish = await Dish.findOne({ _id: req.query.id, isdeleted: false }).populate('recipie', 'dishName');
+      if (!dish) {
+        return res.status(404).json({ message: 'Dish not found' });
+      }
+      res.status(200).json(dish);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
