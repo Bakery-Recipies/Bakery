@@ -15,16 +15,16 @@ const CheckoutComponent = () => {
         <div className="flex flex-col md:flex-row gap-8">
           <div className="flex-grow">
             <div className="mb-6">
-              <h2 className="text-lg font-semibold mb-2">Express Checkout</h2>
-              <div className="flex gap-2">
-                <button className="bg-indigo-600 text-white px-4 py-2 rounded">Shop Pay</button>
-                <button className="bg-white border border-gray-300 px-4 py-2 rounded">
+              <h2 className="text-lg font-semibold mb-2 ">Express Checkout</h2>
+              <div className="flex gap-2 ">
+                <button className="bg-indigo-600 text-white px-4 py-2 rounded hover:scale-110">Shop Pay</button>
+                <button className="bg-white border border-gray-300 px-4 py-2 rounded hover:scale-110">
                   <img src="https://lh3.googleusercontent.com/CBDhGDth7rqSnLcRPjOdfw_HwgKS8Gu-KMIJKQQIXym3J32lqSrrBFTFRjIbKcFR7LNli8O-ChWEzL_Jz94G64jayZIgv5C2Bq3G" alt="Google Pay" className="h-9" />
                 </button>
-                <button className="bg-yellow-300 px-1 py-1 rounded">
+                <button className="bg-yellow-300 px-1 py-1 rounded hover:scale-110">
                   <img src="https://pbs.twimg.com/profile_images/1214220012979920898/N4tFtfjN_400x400.png" alt="Amazon Pay" className="h-8" />
                 </button>
-                <button className="bg-blue-500 text-white px-2 py-2 rounded">
+                <button className="bg-blue-500 text-white px-2 py-2 rounded hover:scale-110">
                     <img src="https://tap2pay.me/wp-content/uploads/2018/12/PayPal-Header-720x480-1.jpg" alt="paypal" className='h-6' />
                 </button>
               </div>
@@ -93,7 +93,7 @@ const CheckoutComponent = () => {
               </div>
             </div>
 
-            <button className="ml-4 bg-yellow-400 text-black font-semibold py-3 px-6 rounded-full w-52 border-black outline">
+            <button className="ml-4 bg-yellow-400 text-black font-semibold py-3 px-6 rounded-full w-52 border-black outline hover:bg-amber-300 hover:scale-95">
               Pay Now
             </button>
           </div>
@@ -117,7 +117,7 @@ const CheckoutComponent = () => {
               </div>
               <div className="flex mb-4">
                 <input type="text" placeholder="Discount Code" className="flex-grow border border-gray-300 rounded-l px-3 py-2" />
-                <button className="bg-yellow-400 text-black font-semibold px-4 py-2 rounded-r">Apply</button>
+                <button className="bg-yellow-400 text-black font-semibold px-4 py-2 rounded-r hover:bg-yellow-300">Apply</button>
               </div>
               <div className="border-t border-gray-200 pt-4">
                 <div className="flex justify-between mb-2">
@@ -138,7 +138,7 @@ const CheckoutComponent = () => {
                 </div>
               </div>
             </div>
-            <button className="mt-4 text-pink-500 font-semibold">&lt; Return to cart</button>
+            <button className="mt-4 text-pink-800 font-semibold hover:text-pink-500">&lt; Return to cart</button>
           </div>
         </div>
       </div>
