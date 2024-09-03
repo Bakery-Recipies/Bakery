@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PayPalButton from './pyamentbutton';
 
 const PaymentDetails = ({ onPaymentMethodChange }) => {
   const [paymentMethod, setPaymentMethod] = useState('credit');
@@ -29,12 +30,12 @@ const PaymentDetails = ({ onPaymentMethodChange }) => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 ">
       <h2 className="text-xl font-bold mb-4">Payment Details</h2>
       
-      <div className="flex space-x-4 mb-4 accent-pink-600">
-        {['net', 'credit', 'cash'].map((method) => (
-          <label key={method} className="flex items-center">
+      <div className="flex space-x-4 mb-4 accent-pink-600 ">
+        {['net', 'cash'].map((method) => (
+          <label key={method} className="flex items-center ">
             <input
               type="radio"
               name="paymentMethod"
@@ -44,37 +45,20 @@ const PaymentDetails = ({ onPaymentMethodChange }) => {
               className="mr-2"
             />
             {method === 'net' ? 'Net Banking' : 
-             method === 'credit' ? 'Credit/Debit card' : 'Cash on delivery'}
+             method === 'cash' ? 'Cash on delivery': 'cash'}
           </label>
         ))}
       </div>
       
-      {paymentMethod === 'credit' && (
-        <div className="grid grid-cols-3 gap-4">
-          {cards.map((card) => (
-            <div key={card.id} className="bg-pink-100 p-4 rounded-lg shadow">
-              <img
-                src={`/${card.type}-logo`}
-                alt={`${card.type} logo`}
-                className="h-8 mb-2"
-              />
-              <p className="text-sm">**** **** **** {card.last4}</p>
-              <p className="text-xs text-gray-600">Expires {card.expires}</p>
-            </div>
-          ))}
-          <div className="bg-pink-100 p-4 rounded-lg shadow flex items-center justify-center">
-            <button 
-              className="text-purple-700 font-semibold"
-              onClick={() => setShowNewCardForm(true)}
-            >
-              + Add New Card
-            </button>
-          </div>
-        </div>
-      )}
+      {paymentMethod === 'net' && (<PayPalButton amount={30}/> 
+        
+    ) }
+
+      
+     
 
       {showNewCardForm && (
-        <form onSubmit={handleAddNewCard} className="mt-4 p-4 bg-gray-100 rounded-lg">
+        <form onSubmit={handleAddNewCard} className="mt-4 p-4 bg-gray-100 rounded-lg ">
           <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700">Card Type</label>
             <select

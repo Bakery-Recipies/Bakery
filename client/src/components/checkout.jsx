@@ -8,27 +8,20 @@ const CheckoutComponent = () => {
     <div className="bg-[#c98d83] p-4 ">
       <div className="mx-auto bg-white rounded-lg shadow-xl p-6 ">
         <div className="text-center mb-4 ">
-          <h1 className="text-2xl font-bold">Frozen-Cookie</h1>
-          <div className="text-sm">
-            <span className="text-gray-400">Your Cart</span> &gt; <span className="font-semibold">Check Out</span>
-          </div>
+          <h1 className="text-2xl font-bold mr-24">Frozen-Cookie</h1>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-8 ">
+        <div className="flex flex-col md:flex-row gap-1 ">
           <div className="flex-grow">
-            <div className="mb-6">
-              <h2 className="text-lg font-semibold mb-2 ">Express Checkout</h2>
-              <div className="flex gap-3 ">
-                <button className="bg-indigo-600 text-white px-4 py-2 rounded hover:scale-110">Shop Pay</button>
-                <button className="bg-white border border-gray-300 px-4 py-2 rounded hover:scale-110">
-                  <img src="https://lh3.googleusercontent.com/CBDhGDth7rqSnLcRPjOdfw_HwgKS8Gu-KMIJKQQIXym3J32lqSrrBFTFRjIbKcFR7LNli8O-ChWEzL_Jz94G64jayZIgv5C2Bq3G" alt="Google Pay" className="h-9" />
-                </button>
-                <button className="bg-yellow-300 px-1 py-1 rounded hover:scale-110">
-                  <img src="https://pbs.twimg.com/profile_images/1214220012979920898/N4tFtfjN_400x400.png" alt="Amazon Pay" className="h-8" />
-                </button>
+            <div className="mb-6 ">
+              
+              <div className="flex gap-3 justify-center ">
+                
+             
+               
       <button className='px-1 py-1 ' >
 
-      <PayPalButton amount="10" />
+      
       </button>
                
                 
@@ -36,23 +29,23 @@ const CheckoutComponent = () => {
                
             </div>
 
-            <div className="border-t border-gray-200 pt-6">
-              <h2 className="text-lg font-semibold mb-4">Contact Information</h2>
-              <input type="email" placeholder="Email" className="w-full border border-gray-300 rounded px-3 py-2 mb-4" />
+            <div className="border-t border-gray-200 pt-6 ml-28">
+              <h2 className="text-lg font-semibold mb-4">Shippment Information</h2>
+              <input type="email" placeholder="Email" className="w-[700px] border border-gray-300 rounded px-3 py-2 mb-4" />
               <label className="flex items-center mb-4">
                 <input type="checkbox" className="mr-2" />
                 <span className="text-sm">Send me email and transaction SMS updates about my order. Msg & data rates may apply.</span>
               </label>
             </div>
 
-            <div className="mb-6">
+            <div className="mb-6 ml-28 w-[700px]">
               <h2 className="text-lg font-semibold mb-4">Shipping Address</h2>
               <select className="w-full border border-gray-300 rounded px-3 py-2 mb-4">
                 <option>Amman</option>
                 <option>AL-Zarqa</option>
                 <option>Homs</option>
               </select>
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-2 gap-4 mb-4 ">
                 <input type="text" placeholder="First Name" className="border border-gray-300 rounded px-3 py-2" />
                 <input type="text" placeholder="Last Name" className="border border-gray-300 rounded px-3 py-2" />
               </div>
@@ -64,10 +57,13 @@ const CheckoutComponent = () => {
               </div>
               <input type="text" placeholder="Phone" className="w-full border border-gray-300 rounded px-3 py-2 mb-4" />
             </div>
+<div className='ml-28' >
 
            <PaymentDetails/>
 
-            <button className="ml-4 bg-yellow-400 text-black font-semibold py-3 px-6 rounded-full w-52 border-black outline hover:bg-amber-300 hover:scale-95">
+</div>
+
+            <button className="ml-32 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] bg-yellow-400 text-black font-semibold py-3 px-6 rounded-full w-[300px] border-black outline hover:bg-amber-300 hover:scale-95">
               Pay Now
             </button>
           </div>
