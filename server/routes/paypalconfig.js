@@ -48,7 +48,7 @@ app.post('/pay', (req, res) => {
       "transactions": [{
           "amount": {
               "currency": "USD",
-              "total": "1.00"
+              "total": "5.00"
           }
       }]
     };
