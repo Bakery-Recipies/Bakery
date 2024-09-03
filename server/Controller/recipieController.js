@@ -1,6 +1,6 @@
 const { default: mongoose } = require("mongoose");
-const Recipie = require("../Models/Recipies");
-const Dish = require("../Models/Dish");
+const Recipie = require("../models/Recipies");
+const Dish = require("../models/Dish");
 exports.makeRecipie = async (req, res) => {
   //recipie data prepration
   const recipieData = req.body;

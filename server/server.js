@@ -6,8 +6,8 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 
-const recipieRoutesAya = require("./routes/recipieRoutesAya");
-const dishRoutesAya = require("./routes/dishRoutesAya");
+// const recipieRoutesAya = require("./routes/recipieRoutesAya");
+const dishRoutes = require("./routes/dishRoutes");
 
 
 
@@ -39,16 +39,12 @@ app.use(cors(corsConfig));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-
-
-
-
 //API Routes:
 //Users Routes
 app.use("/api/users", userRoutes); 
 app.use("/api/chefs", chefRoutes);
 //Other Routes
-app.use("/api/dishes", dishRoutes); 
+app.use("/api/dishes", dishRoutes);
 
 
 
