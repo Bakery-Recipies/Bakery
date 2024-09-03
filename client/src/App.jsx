@@ -1,12 +1,13 @@
 import React from "react";
-// import { Routes, Route } from "react-router-dom";
+import DishCard from "./pages/distCard";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <>
-      {/* <Routes>
-        <Route path="/" element={< />} />
-      </Routes> */}
+      <Routes>
+        <Route path="/DishCard" element={<DishCard/>} />
+      </Routes>
     </>
   );
 }
