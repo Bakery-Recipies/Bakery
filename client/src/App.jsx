@@ -30,6 +30,7 @@ function App() {
   return (
     <>
 
+
     <Header/>
      
       <Routes>
@@ -42,6 +43,7 @@ function App() {
         <Route path="/DishCard" element={<DishCard/>} />
       </Routes>
       <Footer/>
+
 
     </>
   );

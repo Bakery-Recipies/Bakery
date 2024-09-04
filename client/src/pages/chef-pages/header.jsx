@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Croissant, Menu, X, Home, ShoppingBag, User, PhoneCall } from 'lucide-react';
 import Catalog_chef from './Catalog_chef';
@@ -83,10 +84,9 @@ const Header_chef = () => {
               <PhoneCall size={24} />
               <span className="ml-2 lg:inline hidden">Contact</span>
             </button>
+
           </nav>
-          {/* <button className="sm:hidden text-white self-center" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button> */}
+          
         </div>
       </header>
 
