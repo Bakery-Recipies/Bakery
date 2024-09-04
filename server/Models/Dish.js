@@ -9,7 +9,7 @@ const dishSchema = new Schema({
   dishRating: [{ ratingNumber: Number }],
   dishRatingAvg: Number,
   category: String,
-
+  isApproved : {type:Boolean, default:false},
   isDeleted: { type: Boolean, default: false },
 
 });
