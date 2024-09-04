@@ -70,7 +70,11 @@ const CartSidebar = ({ isOpen, onClose, cartItems, removeItem, updateQuantity, o
                   </div>
                 ))}
 
-             
+                {/* We Recommend section */}
+                <div className="mt-4">
+                  <h3 className="text-lg font-semibold">We Recommend</h3>
+                  {/* Add recommended items here */}
+                </div>
 
                 {/* Subtotal and action buttons */}
                 <div className="mt-6">

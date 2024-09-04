@@ -1,7 +1,60 @@
 import React, { useState } from 'react';
-import { Clock, DollarSign, Edit, Trash2, Save, X } from 'lucide-react';
+import { Clock, DollarSign, Edit, Trash2, Save, X, ShoppingCart } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import CartSidebar from '../../components/sidebarcart';
+
 
 const Recipe_dish_management = () => {
+  const [cart, setCart] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  const navigate = useNavigate();
+
+  const toggleCart = () => setIsCartOpen(!isCartOpen);
+
+  const addToCart = (item) => {
+    setCart(prevCart => {
+      const existingItem = prevCart.find(cartItem => cartItem.id === item.id);
+      if (existingItem) {
+        return prevCart.map(cartItem => 
+          cartItem.id === item.id 
+            ? {...cartItem, quantity: cartItem.quantity + 1}
+            : cartItem
+        );
+      }
+      return [...prevCart, {...item, quantity: 1}];
+    });
+    // seFtIsCartOpen(true);
+  };
+  
+  const removeItem = (id) => {
+    setCartItems(cartItems.filter(item => item.id !== id));
+  };
+
+  const updateQuantity = (id, newQuantity) => {
+    if (newQuantity < 1) return;
+    setCartItems(cartItems.map(item => 
+      item.id === id ? { ...item, quantity: newQuantity } : item
+    ));
+  };
+
+  const handleCheckout = () => {
+    setIsCartOpen(false);
+    navigate('/checkout');
+  };
+
+  const handleContinueShopping = () => {
+    setIsCartOpen(false);
+    navigate('/chef-home');
+  };
+
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+
+
+
+
+
   const [activeTab, setActiveTab] = useState('recipe');
   const [isEditing, setIsEditing] = useState(false);
   const [recipe, setRecipe] = useState({
@@ -70,6 +123,11 @@ const Recipe_dish_management = () => {
   const inputClass = "mt-1 block w-full rounded-md border-2 border-[#c98d83] shadow-sm focus:border-[#c98d83] focus:ring focus:ring-[#c98d83] focus:ring-opacity-50 px-4 py-2";
 
   const renderEditableContent = () => {
+  
+
+
+
+
     if (activeTab === 'recipe') {
       return (
         <div className="space-y-6">
@@ -167,6 +225,10 @@ const Recipe_dish_management = () => {
             />
           </div>
           <div>
+         
+           
+          </div>
+          <div>
             <label htmlFor="servingSize" className="block text-sm font-medium text-gray-700 mb-1">Serving Size</label>
             <input
               type="text"
@@ -257,6 +319,23 @@ const Recipe_dish_management = () => {
                     <h1 className="text-3xl font-bold text-[#c98d83] mb-3">{dish.name}</h1>
                     <p className="text-gray-600 mb-4">{dish.description}</p>
                     <div className="flex items-center mb-4 bg-[#f8e5e1] p-2 rounded-md">
+                    <button onClick={toggleCart} className="fixed top-4 right-4 z-50">
+    <ShoppingCart />
+    <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+      {cart.reduce((sum, item) => sum + item.quantity, 0)}
+    </span>
+  </button>
+  <CartSidebar 
+    isOpen={isCartOpen} 
+    onClose={toggleCart}
+    cartItems={cart}
+    removeItem={(id) => setCart(cart.filter(item => item.id !== id))}
+    updateQuantity={(id, quantity) => setCart(cart.map(item => 
+      item.id === id ? {...item, quantity} : item
+    ))}
+    onCheckout={() => {/* handle checkout */}}
+    onContinueShopping={toggleCart}
+  />
                       <DollarSign className="text-[#c98d83] mr-2" />
                       <span className="font-medium">${dish.price.toFixed(2)}</span>
                     </div>
@@ -272,6 +351,7 @@ const Recipe_dish_management = () => {
                   <p className="mb-6 bg-[#f8e5e1] p-2 rounded-md">
                     <strong>Serving Size:</strong> {dish.servingSize}
                   </p>
+                 
                 </div>
               )}
             </div>
@@ -311,6 +391,7 @@ const Recipe_dish_management = () => {
                   <Trash2 className="mr-2" size={18} />
                   Delete
                 </button>
+    
               </>
             )}
           </div>

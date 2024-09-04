@@ -6,13 +6,23 @@ import { useNavigate } from 'react-router-dom';
 const Header_chef = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: 'Vegan Chocolate Chip Cookie Dough', price: 12.99, quantity: 1, image: 'path_to_image' },
-    { id: 2, name: 'Vegan Peanut Butter Cookie Dough', price: 11.05, quantity: 2, image: 'path_to_image' },
-  ]);
+  const [cartItems, setCartItems] = useState([]);
   const navigate = useNavigate();
 
   const toggleCart = () => setIsCartOpen(!isCartOpen);
+
+  const addToCart = (item) => {
+    setCartItems((prevItems) => { 
+      const existingItem = prevItems.find((i) => i.id === item.id);
+      if (existingItem) {
+        return prevItems.map((i) =>
+          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+        );
+      }
+      return [...prevItems, { ...item, quantity: 1 }];
+    });
+    setIsCartOpen(true);
+  };
 
   const removeItem = (id) => {
     setCartItems(cartItems.filter(item => item.id !== id));
@@ -35,6 +45,8 @@ const Header_chef = () => {
     navigate('/chef-home');
   };
 
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
     <header className="bg-[#c98d83] shadow-md w-full z-10">
     {/* <header className="bg-[#c98d83] shadow-md fixed w-full z-10"> */}
@@ -51,7 +63,14 @@ const Header_chef = () => {
         <nav className="hidden md:flex items-center space-x-6 flex-1 justify-center">
           <Link to="/chef-profile" className="text-white hover:text-rose-200 transition duration-300">Profile</Link>
           <Link to="/chef-contact" className="text-white hover:text-rose-200 transition duration-300">Contact</Link>
-          <button onClick={toggleCart}><ShoppingCart/></button>
+          <button onClick={toggleCart} className="relative p-2">
+          <ShoppingCart className="w-6 h-6" />
+          {totalItems > 0 && (
+            <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+              {totalItems}
+            </span>
+          )}
+        </button>
       <CartSidebar
         isOpen={isCartOpen} 
         onClose={() => setIsCartOpen(false)}
