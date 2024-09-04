@@ -135,7 +135,9 @@ const DishCardContainer = () => {
   useEffect(() => {
     setIsLoading(true);
     axios
+
       .get("http://localhost:3001/api/dishes/getDishes")
+
       .then((response) => {
         const fetchedDishes = response.data;
         if (Array.isArray(fetchedDishes)) {

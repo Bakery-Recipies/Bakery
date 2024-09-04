@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Filter, Clock, DollarSign, ChevronsRight, Plus } from 'lucide-react';
+import { Search, Filter, Clock, DollarSign, ChevronsRight, Plus, ShoppingCart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 
@@ -30,7 +30,7 @@ const Catalog_chef = () => {
   const types = ['All', 'recipe', 'dish'];
 
   return (
-    <div className="min-h-screen bg-[#f8e5e1] py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#f8e5e1] rounded-lg overflow-hidden py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold text-center text-[#c98d83] mb-8">Recipe and Dish Catalog</h1>
 
@@ -103,10 +103,19 @@ const Catalog_chef = () => {
                   )}
                 </div>
 
-                <Link to="/recipe-dish-management" className="hover:text-rose-200 transition duration-300">
-                  <button className="mt-4 w-full bg-[#c98d83] text-white py-2 rounded-full hover:bg-[#b67c73] transition-colors duration-300 flex items-center justify-center">
+
+                <Link className="hover:text-rose-200 transition duration-300">
+                  <button
+                    onClick={() => {
+
+                      sessionStorage.setItem("tab", "management");
+                      window.dispatchEvent(new Event('storage'));
+                    }}
+                    className="bg-[#c98d83] text-white px-4 py-2 rounded hover:bg-[#b17c73] transition duration-300 flex items-center justify-center w-full"
+
+                  >
+                    <ShoppingCart className="mr-2" />
                     View Details
-                    <ChevronsRight size={18} className="ml-2" />
                   </button>
                 </Link>
               </div>
@@ -116,8 +125,18 @@ const Catalog_chef = () => {
 
         {/* New section for adding recipe or dish */}
         <div className="mt-12 border-2 border-[#c98d83] rounded-lg p-8 flex justify-center items-center">
-          <Link to="/recipe-dish-create" className="hover:text-rose-200 transition duration-300">
-            <button className="bg-[#c98d83] text-white px-6 py-3 rounded-full hover:bg-[#b67c73] transition-colors duration-300 flex items-center justify-center text-lg font-semibold">
+
+
+          <Link className="hover:text-rose-200 transition duration-300">
+            <button
+              onClick={() => {
+
+                sessionStorage.setItem("tab", "dish-recipes-creation");
+                window.dispatchEvent(new Event('storage'));
+              }}
+              className="bg-[#c98d83] text-white px-6 py-3 rounded-full hover:bg-[#b67c73] transition-colors duration-300 flex items-center justify-center text-lg font-semibold"
+
+            >
               <Plus size={24} className="mr-2" />
               Add New Recipe or Dish
             </button>
