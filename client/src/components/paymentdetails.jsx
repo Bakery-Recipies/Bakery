@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PayPalButton from './pyamentbutton';
 
-const PaymentDetails = ({ onPaymentMethodChange }) => {
-  const [paymentMethod, setPaymentMethod] = useState('credit');
+const PaymentDetails = ({ onPaymentMethodChange = () => {} }) => {
+  const [paymentMethod, setPaymentMethod] = useState('net');
   const [cards, setCards] = useState([
     { id: 1, type: 'visa', last4: '0981', expires: '10/19' },
     { id: 2, type: 'mastercard', last4: '2564', expires: '10/19' },
@@ -30,12 +30,12 @@ const PaymentDetails = ({ onPaymentMethodChange }) => {
   };
 
   return (
-    <div className="p-4 ">
+    <div className="p-4">
       <h2 className="text-xl font-bold mb-4">Payment Details</h2>
       
-      <div className="flex space-x-4 mb-4 accent-pink-600 ">
+      <div className="flex space-x-4 mb-4 accent-pink-600">
         {['net', 'cash'].map((method) => (
-          <label key={method} className="flex items-center ">
+          <label key={method} className="flex items-center">
             <input
               type="radio"
               name="paymentMethod"
@@ -44,26 +44,20 @@ const PaymentDetails = ({ onPaymentMethodChange }) => {
               onChange={() => handlePaymentMethodChange(method)}
               className="mr-2"
             />
-            {method === 'net' ? 'Net Banking' : 
-             method === 'cash' ? 'Cash on delivery': 'cash'}
+            {method === 'net' ? 'Net Banking' : 'Cash on delivery'}
           </label>
         ))}
       </div>
       
-      {paymentMethod === 'net' && (<PayPalButton amount={30}/> 
-        
-    ) }
-
-      
-     
+      {paymentMethod === 'net' && <PayPalButton amount={30} />}
 
       {showNewCardForm && (
-        <form onSubmit={handleAddNewCard} className="mt-4 p-4 bg-gray-100 rounded-lg ">
+        <form onSubmit={handleAddNewCard} className="mt-4 p-4 bg-gray-100 rounded-lg">
           <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700">Card Type</label>
             <select
               value={newCard.type}
-              onChange={(e) => setNewCard({...newCard, type: e.target.value})}
+              onChange={(e) => setNewCard({ ...newCard, type: e.target.value })}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
             >
               <option value="visa">Visa</option>
@@ -75,7 +69,7 @@ const PaymentDetails = ({ onPaymentMethodChange }) => {
             <input
               type="text"
               value={newCard.number}
-              onChange={(e) => setNewCard({...newCard, number: e.target.value})}
+              onChange={(e) => setNewCard({ ...newCard, number: e.target.value })}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
               placeholder="1234 5678 9012 3456"
             />
@@ -85,7 +79,7 @@ const PaymentDetails = ({ onPaymentMethodChange }) => {
             <input
               type="text"
               value={newCard.expires}
-              onChange={(e) => setNewCard({...newCard, expires: e.target.value})}
+              onChange={(e) => setNewCard({ ...newCard, expires: e.target.value })}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
               placeholder="MM/YY"
             />

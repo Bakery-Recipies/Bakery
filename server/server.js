@@ -1,53 +1,45 @@
-//imports
+// Imports
 const express = require("express");
 const cors = require("cors");
-const paypal = require("paypal-rest-sdk");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
-
-
-// const recipieRoutesAya = require("./routes/recipieRoutesAya");
-// const dishRoutesAya = require("./routes/dishRoutesAya");
-
-
-
-// const userRoutes = require("./routes/userRoutes"); 
-
-
+const paypal = require('@paypal/checkout-server-sdk');
 const mongoose = require("./config/dbConfig");
-// const chefRoutes = require("./routes/chefRoutes");
 
-
-
-
-
-//server variables
+// Server variables
 const port = process.env.PORT || 3000;
 const app = express();
 const corsConfig = {
   credentials: true,
 };
-//server middlewares
+
+// Server middlewares
 app.use(cors(corsConfig));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-//API Routes:
-//Users Routes
-// app.use("/api/users", userRoutes); 
+// API Routes
+// const userRoutes = require("./routes/userRoutes");
+// app.use("/api/users", userRoutes);
+
+// const chefRoutes = require("./routes/chefRoutes");
 // app.use("/api/chefs", chefRoutes);
-//Other Routes
-// app.use("/api/dishes", dishRoutes); 
 
+// const dishRoutes = require("./routes/dishRoutes");
+// app.use("/api/dishes", dishRoutes);
 
-// Paypal integration 
+// const RecipeRoutes = require("./routes/recipieRoutes");
+// app.use("/api/Recipe", RecipeRoutes);
 
-paypal.configure({
-  'mode': 'sandbox', //sandbox or live
-  'client_id': 'AaNKdFSya2nFjcnY-ovYES--3uDl6E6fS9Fz4SpNsX0iAvMg_m0PIoQT2SJsw_NUXN4QAikbdDXJqRZE',
-  'client_secret': 'EFgZ0bb68kjSKRdw84l6CjB3rIQrx465L3ByYloHYIRAxtpTdCB5wX3V4TVz6vBqokg-qO5OGIYXYpNz'
-});
+// PayPal integration configuration
+let environment = new paypal.core.SandboxEnvironment(
+  process.env.PAYPAL_CLIENT_ID || 'AaNKdFSya2nFjcnY-ovYES--3uDl6E6fS9Fz4SpNsX0iAvMg_m0PIoQT2SJsw_NUXN4QAikbdDXJqRZE',
+  process.env.PAYPAL_CLIENT_SECRET || 'EFgZ0bb68kjSKRdw84l6CjB3rIQrx465L3ByYloHYIRAxtpTdCB5wX3V4TVz6vBqokg-qO5OGIYXYpNz'
+);
+let client = new paypal.core.PayPalHttpClient(environment);
+
+// Mongoose transaction model
 const Transaction = mongoose.model('Transaction', {
   paypalOrderId: String,
   paypalPayerId: String,
@@ -57,17 +49,28 @@ const Transaction = mongoose.model('Transaction', {
   createdAt: { type: Date, default: Date.now }
 });
 
-app.post('/api/complete-payment', express.json(), async (req, res) => {
+// Utility function to retrieve PayPal order details
+async function getOrderDetails(orderID) {
+  const request = new paypal.orders.OrdersGetRequest(orderID);
+  try {
+    const order = await client.execute(request);
+    return order.result;
+  } catch (error) {
+    throw new Error(`PayPal order retrieval failed: ${error.message}`);
+  }
+}
+
+// API route to handle payment completion
+app.post('/api/complete-payment', async (req, res) => {
   const { orderID } = req.body;
+
+  if (!orderID) {
+    return res.status(400).json({ success: false, error: 'Order ID is required' });
+  }
 
   try {
     // Fetch the order details from PayPal
-    const order = await new Promise((resolve, reject) => {
-      paypal.orders.get(orderID, (error, order) => {
-        if (error) reject(error);
-        else resolve(order);
-      });
-    });
+    const order = await getOrderDetails(orderID);
 
     // Ensure the order is in the correct state
     if (order.status !== 'COMPLETED') {
@@ -83,25 +86,19 @@ app.post('/api/complete-payment', express.json(), async (req, res) => {
       paypalOrderId: orderID,
       paypalPayerId: payerID,
       amount: parseFloat(amount),
-      status: order.status
+      status: order.status,
     });
     await transaction.save();
 
+    // Send a success response with the transaction ID
     res.json({ success: true, transactionId: transaction._id });
   } catch (error) {
-    console.error('Payment verification failed:', error);
+    console.error('Payment verification failed:', error.message);
     res.status(500).json({ success: false, error: 'Payment verification failed' });
   }
 });
 
-
-
-
-
-// paypal end 
-
-
-//server connection
+// Server connection
 app.listen(port, () => {
-  console.log(`server is running on port http://localhost:${port}`);
+  console.log(`Server is running on port http://localhost:${port}`);
 });

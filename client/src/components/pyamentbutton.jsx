@@ -16,7 +16,7 @@ function PayPalButton({ amount }) {
   const onApprove = (data, actions) => {
     return actions.order.capture().then(function (details) {
       // Send the payment details to your server
-      fetch('http://localhost:3001/api/complete-payment', {
+      fetch('http://localhost:8080/api/complete-payment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -26,7 +26,16 @@ function PayPalButton({ amount }) {
           payerID: data.payerID,
           paymentID: details.id,
         }),
-      });
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          console.log("Payment successful!", data);
+        } else {
+          console.error("Payment verification failed:", data.error);
+        }
+      })
+      .catch(error => console.error("Error communicating with the server:", error));
     });
   };
 
@@ -35,6 +44,7 @@ function PayPalButton({ amount }) {
       <PayPalButtons
         createOrder={createOrder}
         onApprove={onApprove}
+        onError={(err) => console.error("PayPal Button Error:", err)}
       />
     </PayPalScriptProvider>
   );
