@@ -9,7 +9,6 @@ const repliesSchema = new Schema({
 });
 
 const ratingSchema = new Schema({
-  ratingCount: Number,
   ratingComment: String,
   ratingDate: Date,
   ratingAuthor: { type: mongoose.Types.ObjectId, ref: "User" },

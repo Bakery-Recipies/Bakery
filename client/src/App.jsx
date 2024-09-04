@@ -1,4 +1,6 @@
 import React from "react";
+import DishCard from "./pages/distCard";
+import CheckoutComponent from "./components/checkout";
 import { Routes, Route } from "react-router-dom";
 import "./pages/chef-pages/animations.css"
 
@@ -14,10 +16,13 @@ import Catalog_chef from "./pages/chef-pages/Catalog_chef";
 import Chef_profile from "./pages/chef-pages/profile";
 import Contactus_chef from "./pages/chef-pages/chef-contact";
 
+
+
 function App() {
   return (
     <>
       <Routes>
+
         <Route path="/DishCard" element={<DishCard />} />
         <Route path="/chef-home" element={<Chef_home_page></Chef_home_page>} />
         <Route path="/chef-home" element={<Chef_home_page></Chef_home_page>} />
@@ -28,10 +33,7 @@ function App() {
         <Route path="/chef-contact" element={<Contactus_chef></Contactus_chef>} />
       </Routes>
 
-
-
-
-
+      <Footer_chef></Footer_chef>
 
     </>
   );
