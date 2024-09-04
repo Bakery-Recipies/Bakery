@@ -1,5 +1,5 @@
 import React from "react";
-import DishCard from "./pages/distCard";
+// import DishCard from "./pages/distCard";
 import CheckoutComponent from "./components/checkout";
 import { Routes, Route } from "react-router-dom";
 import "./pages/chef-pages/animations.css"
@@ -15,9 +15,13 @@ import Recipe_dish_management from "./pages/chef-pages/recpie-dish-management";
 import Catalog_chef from "./pages/chef-pages/Catalog_chef";
 import Chef_profile from "./pages/chef-pages/profile";
 import Contactus_chef from "./pages/chef-pages/chef-contact";
+
+import RecipeDishList from "./pages/recipeList";
+
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+
 
 import UserReg from './components/userReg'; // Update the path as per your file structure
 
@@ -29,19 +33,14 @@ function App() {
     <Header/>
      
       <Routes>
+
+        <Route path="/RecipeDishList" element={<RecipeDishList/>} />
+
         <Route path="/" element={<Home/>} />
         <Route path="/register" element={<UserReg />} />
         <Route path="/UserReg" element={<userReg/>} />
         <Route path="/DishCard" element={<DishCard/>} />
-
-        <Route path="/chef-home" element={<Chef_home_page></Chef_home_page>} />
-        <Route path="/recipe-dish-create" element={<Recipe_dish_creation></Recipe_dish_creation>} />
-        <Route path="/recipe-dish-management" element={<Recipe_dish_management></Recipe_dish_management>} />
-        <Route path="/chef-catalog" element={<Catalog_chef></Catalog_chef>} />
-        <Route path="/chef-profile" element={<Header_chef></Header_chef>} />
-        <Route path="/chef-contact" element={<Contactus_chef></Contactus_chef>} />
       </Routes>
-     
       <Footer/>
 
     </>
