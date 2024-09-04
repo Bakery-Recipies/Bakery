@@ -9,15 +9,15 @@ require("dotenv").config();
 // const recipieRoutesAya = require("./routes/recipieRoutesAya");
 const dishRoutes = require("./routes/dishRoutes");
 
-
+const recipiesRoutes = require("./routes/recipieRoutes")
 
 const userRoutes = require("./routes/userRoutes"); 
 
 
 const mongoose = require("./config/dbConfig");
 const chefRoutes = require("./routes/chefRoutes");
-
-
+const contactRoutes = require("./routes/contactRoutes")
+const reportRoutes = require('./routes/reportRoutes');
 // Paypal integration 
 const paypal = require("paypal-rest-sdk");
 
@@ -43,9 +43,11 @@ app.use(cookieParser());
 //Users Routes
 app.use("/api/users", userRoutes); 
 app.use("/api/chefs", chefRoutes);
+app.use("/api/recipes", recipiesRoutes);
 //Other Routes
 app.use("/api/dishes", dishRoutes);
-
+app.use("/api/messages", contactRoutes);
+app.use('/api/reports', reportRoutes);
 
 
 //server connection
